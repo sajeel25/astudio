@@ -53,7 +53,7 @@ class ProjectController extends Controller
 
             $project = Project::create($validated);
 
-            if($projectRequest->has('user_ids'))
+            if($projectRequest->has('user_id'))
             {
                 $userId = $projectRequest->input('user_id');
 
@@ -94,7 +94,7 @@ class ProjectController extends Controller
 
             $project->update($validated);
 
-            if($projectRequest->has('user_ids'))
+            if($projectRequest->has('user_id'))
             {
                 $userId = $projectRequest->input('user_id');
 
