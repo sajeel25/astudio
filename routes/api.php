@@ -23,7 +23,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('attribute-values/{entity_id}', [AttributeValueController::class, 'index']);
     Route::delete('attribute-values/{id}', [AttributeValueController::class, 'destroy']);
     Route::post('logout', function (Request $request) {
-        return $request->user()->currentAccessToken()->delete();
+        $request->user()->token()->revoke();
+        return response()->json(['status_code' => 200, 'message' => 'Logged out successfully'], 200);
     });
 
 });

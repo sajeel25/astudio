@@ -53,6 +53,13 @@ class ProjectController extends Controller
 
             $project = Project::create($validated);
 
+            if($projectRequest->has('user_ids'))
+            {
+                $userId = $projectRequest->input('user_id');
+
+                $this->projectService->assignUsersToProject($project, $userId);
+            }
+
             if(isset($validated['attributes']) && is_array($validated['attributes']))
             {
                 $this->projectService->saveAttributeValue($project, $validated['attributes']);
